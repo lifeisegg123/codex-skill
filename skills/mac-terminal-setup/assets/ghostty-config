@@ -1,0 +1,51 @@
+# Community Material Theme Darker High Contrast inspired
+
+background = #212121
+foreground = #EEFFFF
+
+selection-background = #616161
+selection-foreground = #EEFFFF
+
+cursor-color = #FFCB6B
+cursor-text = #000000
+cursor-style = block
+
+palette = 0=#000000
+palette = 1=#FF5370
+palette = 2=#C3E88D
+palette = 3=#FFCB6B
+palette = 4=#82AAFF
+palette = 5=#C792EA
+palette = 6=#89DDFF
+palette = 7=#FFFFFF
+palette = 8=#4A4A4A
+palette = 9=#FF5370
+palette = 10=#C3E88D
+palette = 11=#FFCB6B
+palette = 12=#82AAFF
+palette = 13=#C792EA
+palette = 14=#89DDFF
+palette = 15=#FFFFFF
+
+font-size = 14
+minimum-contrast = 1.1
+
+window-padding-x = 10
+window-padding-y = 8
+window-padding-balance = true
+
+macos-titlebar-style = transparent
+window-decoration = auto
+
+# Usability
+mouse-hide-while-typing = true
+scrollback-limit = 50000000
+copy-on-select = false
+
+# Window behavior
+window-save-state = always
+window-step-resize = true
+
+# Quick Terminal layout only. No keybinding is configured.
+quick-terminal-position = top
+quick-terminal-size = 40%

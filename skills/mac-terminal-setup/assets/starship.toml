@@ -1,0 +1,44 @@
+add_newline = true
+command_timeout = 700
+palette = "material"
+
+format = """
+$nodejs$directory$git_branch${custom.git_changes}$git_metrics
+$character"""
+
+[palettes.material]
+surface = "#111111"
+text = "#EEFFFF"
+green = "#C3E88D"
+yellow = "#FFCB6B"
+blue = "#82AAFF"
+muted = "#4A4A4A"
+red = "#FF5370"
+
+[nodejs]
+symbol = " "
+format = "[](fg:surface)[ $symbol$version ](bg:surface fg:green bold)[](fg:surface) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[directory]
+format = "[](fg:surface)[  $path ](bg:surface fg:text bold)[](fg:surface) "
+truncation_length = 5
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+format = "[](fg:surface)[ $symbol$branch ](bg:surface fg:green bold)[](fg:surface) "
+
+[custom.git_changes]
+when = "test \"$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')\" != 0"
+command = "git status --porcelain 2>/dev/null | wc -l | tr -d ' '"
+format = "[](fg:surface)[ 󰈙 $output ](bg:surface fg:green bold)[](fg:surface) "
+shell = ["sh"]
+
+[git_metrics]
+disabled = false
+format = "([](fg:surface)[ +$added ](bg:surface fg:green bold)[](fg:surface) )"
+
+[character]
+success_symbol = "[%](bold fg:green) "
+error_symbol = "[%](bold fg:red) "
