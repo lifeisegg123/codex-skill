@@ -54,7 +54,7 @@ Existing config files are backed up with `.bak.YYYYMMDD-HHMMSS` before they are 
 - `mise activate zsh` is enabled in the managed zsh block.
 - Zinit loads `zsh-users/zsh-completions`, `zsh-users/zsh-autosuggestions`, `zdharma-continuum/fast-syntax-highlighting`, and `olets/zsh-transient-prompt`.
 - Atuin enables searchable shell history via `atuin init zsh`.
-- Delta powers side-by-side git diff commands: `changes`, `changes-staged`, and `changes-last`. Long lines wrap for readability and inline diffing uses whitespace-delimited words.
+- Delta powers side-by-side git diff commands: `changes`, `changes-staged`, and `changes-last`. Long lines do not wrap, so words are not split mid-token; use horizontal scrolling in `less`, or set `CHANGES_DIFF_WIDTH` to change the virtual diff width. Inline diffing uses whitespace-delimited words.
 - Starship renders the Warp-like prompt from `assets/starship.toml`.
 - Transient prompt keeps the active prompt rich but collapses previous prompts to a short `%`.
 

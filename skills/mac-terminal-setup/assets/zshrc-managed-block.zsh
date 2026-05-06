@@ -27,10 +27,13 @@ fi
 
 # mac-terminal-setup: side-by-side git diff viewer
 _mac_terminal_setup_delta() {
-  delta \
+  local width="${CHANGES_DIFF_WIDTH:-240}"
+
+  DELTA_PAGER="${DELTA_PAGER:-less -RXS}" delta \
     --side-by-side \
     --line-numbers \
-    --wrap-max-lines=unlimited \
+    --wrap-max-lines=0 \
+    --width="$width" \
     "--word-diff-regex=[^[:space:]]+" \
     --paging=always
 }
