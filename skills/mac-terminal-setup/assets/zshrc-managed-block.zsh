@@ -27,6 +27,15 @@ fi
 
 # mac-terminal-setup: side-by-side git diff viewer
 _mac_terminal_setup_delta() {
+  delta \
+    --side-by-side \
+    --line-numbers \
+    --wrap-max-lines=unlimited \
+    "--word-diff-regex=[^[:space:]]+" \
+    --paging=always
+}
+
+_mac_terminal_setup_delta_wide() {
   local width="${CHANGES_DIFF_WIDTH:-240}"
 
   DELTA_PAGER="${DELTA_PAGER:-less -RXS}" delta \
@@ -52,6 +61,26 @@ changes() {
       print ""
       git diff --color=always "$@"
     } | _mac_terminal_setup_delta
+  else
+    git status --short
+    git diff "$@"
+  fi
+}
+
+changes-wide() {
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+    print -u2 "changes-wide: not inside a git repository"
+    return 1
+  }
+
+  if command -v delta >/dev/null 2>&1; then
+    {
+      print "Repository changes"
+      print "=================="
+      git status --short
+      print ""
+      git diff --color=always "$@"
+    } | _mac_terminal_setup_delta_wide
   else
     git status --short
     git diff "$@"
