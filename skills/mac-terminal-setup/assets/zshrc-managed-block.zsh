@@ -25,6 +25,52 @@ if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
 fi
 
+# mac-terminal-setup: side-by-side git diff viewer
+_mac_terminal_setup_delta() {
+  delta \
+    --side-by-side \
+    --line-numbers \
+    --wrap-max-lines=unlimited \
+    "--word-diff-regex=[^[:space:]]+" \
+    --paging=always
+}
+
+changes() {
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+    print -u2 "changes: not inside a git repository"
+    return 1
+  }
+
+  if command -v delta >/dev/null 2>&1; then
+    {
+      print "Repository changes"
+      print "=================="
+      git status --short
+      print ""
+      git diff --color=always "$@"
+    } | _mac_terminal_setup_delta
+  else
+    git status --short
+    git diff "$@"
+  fi
+}
+
+changes-staged() {
+  if command -v delta >/dev/null 2>&1; then
+    git diff --cached --color=always "$@" | _mac_terminal_setup_delta
+  else
+    git diff --cached "$@"
+  fi
+}
+
+changes-last() {
+  if command -v delta >/dev/null 2>&1; then
+    git show --color=always --stat --patch "${1:-HEAD}" | _mac_terminal_setup_delta
+  else
+    git show --stat --patch "${1:-HEAD}"
+  fi
+}
+
 # mac-terminal-setup: Warp-like prompt
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
