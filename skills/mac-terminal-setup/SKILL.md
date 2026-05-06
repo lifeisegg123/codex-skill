@@ -1,13 +1,13 @@
 ---
 name: mac-terminal-setup
-description: Set up a macOS terminal environment with Ghostty as a Warp replacement, Starship prompt, Atuin searchable history, Zinit-managed zsh plugins, mise activation, and the matching config files. Use when Codex needs to configure or reproduce this user's Mac terminal setup, migrate another Mac away from Warp, install Ghostty terminal tooling, or apply the bundled terminal dotfiles safely.
+description: Set up a macOS terminal environment with Ghostty as a Warp replacement, Starship prompt, Atuin searchable history, Zinit-managed zsh plugins, mise activation, Claude Code CLI-friendly Option key behavior, and the matching config files. Use when Codex needs to configure or reproduce this user's Mac terminal setup, migrate another Mac away from Warp, install Ghostty terminal tooling, or apply the bundled terminal dotfiles safely.
 ---
 
 # Mac Terminal Setup
 
 ## Overview
 
-Use this skill to reproduce the user's preferred macOS terminal setup on a new Mac. The setup installs Ghostty, Starship, Atuin, Zinit, and mise, then applies the bundled Ghostty, Starship, mise, and zsh managed-block configuration.
+Use this skill to reproduce the user's preferred macOS terminal setup on a new Mac. The setup installs Ghostty, Starship, Atuin, Zinit, and mise, then applies the bundled Ghostty, Starship, mise, and zsh managed-block configuration. Ghostty is configured so `Option+Backspace` deletes the previous word in terminal TUIs such as Claude Code CLI.
 
 ## Quick Start
 
@@ -42,7 +42,7 @@ tmp_home="$(mktemp -d)"
 - Installs Homebrew packages: `starship`, `atuin`, `zinit`, `mise`.
 - Installs Homebrew cask: `ghostty`.
 - Creates `~/.hushlogin` to suppress macOS `Last login` text before the prompt.
-- Writes `~/.config/ghostty/config` from `assets/ghostty-config`.
+- Writes `~/.config/ghostty/config` from `assets/ghostty-config`, including `macos-option-as-alt = true` and `alt+backspace` mapped to `Ctrl-W` for previous-word deletion.
 - Writes `~/.config/starship.toml` from `assets/starship.toml`.
 - Writes `~/.config/mise/config.toml` from `assets/mise-config.toml`.
 - Inserts or replaces only the managed block between `# >>> mac-terminal-setup >>>` and `# <<< mac-terminal-setup <<<` in `~/.zshrc`.
@@ -66,6 +66,7 @@ zsh -n ~/.zshrc
 brew list --formula | rg '^(atuin|starship|zinit|mise)$'
 brew list --cask | rg '^ghostty$'
 test -f ~/.config/ghostty/config
+/Applications/Ghostty.app/Contents/MacOS/ghostty +validate-config --config-file="$HOME/.config/ghostty/config"
 test -f ~/.config/starship.toml
 test -f ~/.config/mise/config.toml
 test -f ~/.hushlogin

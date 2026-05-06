@@ -38,14 +38,18 @@ macos-titlebar-style = transparent
 window-decoration = auto
 
 # Usability
+macos-option-as-alt = true
 mouse-hide-while-typing = true
 scrollback-limit = 50000000
 copy-on-select = false
+
+# Make Option+Backspace delete the previous word in terminal TUIs such as Claude Code.
+keybind = alt+backspace=text:\x17
 
 # Window behavior
 window-save-state = always
 window-step-resize = true
 
-# Quick Terminal layout only. No keybinding is configured.
+# Quick Terminal layout only. No global keybinding is configured.
 quick-terminal-position = top
 quick-terminal-size = 40%

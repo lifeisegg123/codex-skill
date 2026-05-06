@@ -1,4 +1,4 @@
 interface:
   display_name: "Mac Terminal Setup"
-  short_description: "Ghostty, Starship, Atuin, Zinit terminal setup"
+  short_description: "Ghostty, Starship, Atuin, Zinit, Claude Code key setup"
   default_prompt: "Use $mac-terminal-setup to set up my Mac terminal environment."
