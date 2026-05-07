@@ -1,4 +1,4 @@
 interface:
   display_name: "Mac Terminal Setup"
-  short_description: "Ghostty, Starship, Atuin, Delta, Zinit setup"
+  short_description: "Ghostty, Nanum font, Starship, Atuin, Delta setup"
   default_prompt: "Use $mac-terminal-setup to set up my Mac terminal environment."

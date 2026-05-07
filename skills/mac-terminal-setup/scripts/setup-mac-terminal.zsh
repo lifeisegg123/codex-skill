@@ -11,7 +11,7 @@ usage() {
   cat <<'USAGE'
 Usage: setup-mac-terminal.zsh [--dry-run] [--skip-brew] [--home PATH]
 
-Sets up Ghostty, Starship, Atuin, Zinit, mise, and the managed zsh block.
+Sets up Ghostty, Nanum Gothic Coding, Starship, Atuin, Delta, Zinit, mise, and the managed zsh block.
 
 Options:
   --dry-run     Print actions without writing files or installing packages.
@@ -234,7 +234,7 @@ validate_setup() {
 
   if (( ! SKIP_BREW )); then
     brew list --formula atuin git-delta starship zinit mise >/dev/null
-    brew list --cask ghostty >/dev/null
+    brew list --cask ghostty font-nanum-gothic-coding >/dev/null
   fi
 
   [[ -f "$TARGET_HOME/.config/ghostty/config" ]]
@@ -256,6 +256,7 @@ main() {
   if (( ! SKIP_BREW )); then
     ensure_brew
     install_cask ghostty
+    install_cask font-nanum-gothic-coding
     install_formula atuin
     install_formula git-delta
     install_formula starship

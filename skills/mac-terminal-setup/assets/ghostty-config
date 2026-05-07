@@ -27,6 +27,7 @@ palette = 13=#C792EA
 palette = 14=#89DDFF
 palette = 15=#FFFFFF
 
+font-family = NanumGothicCoding
 font-size = 14
 minimum-contrast = 1.1
 
