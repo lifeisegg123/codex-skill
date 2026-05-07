@@ -233,7 +233,7 @@ validate_setup() {
   fi
 
   if (( ! SKIP_BREW )); then
-    brew list --formula atuin starship zinit mise >/dev/null
+    brew list --formula atuin git-delta starship zinit mise >/dev/null
     brew list --cask ghostty >/dev/null
   fi
 
@@ -256,8 +256,9 @@ main() {
   if (( ! SKIP_BREW )); then
     ensure_brew
     install_cask ghostty
-    install_formula starship
     install_formula atuin
+    install_formula git-delta
+    install_formula starship
     install_formula zinit
     install_formula mise
   else
